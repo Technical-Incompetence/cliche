@@ -196,9 +196,9 @@ layer_0/tile_data = PackedInt32Array(131073, 0, 0, 327680, 0, 0, 393217, 0, 0, 3
 layer_1/name = "Level 1"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
+layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
-layer_1/z_index = 0
+layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(327683, 0, 1, 262148, 0, 1, 196612, 0, 1, 131077, 0, 1, 65541, 0, 1, 65542, 65536, 1, 720901, 0, 2, 786438, 0, 2, 196616, 131072, 0, 131081, 131072, 0, 131082, 196608, 0, 196618, 196608, 0, 327690, 196608, 1, 393226, 196608, 1, 327688, 131072, 1, 393225, 131072, 1, 458761, 131072, 2, 196617, 0, 0, 262153, 0, 0, 327689, 0, 0, 262154, 0, 0, 786439, 65536, 2, 262152, 196608, 2, 720903, 65536, 2, 589831, 65536, 1, 524295, 65536, 1, 524294, 0, 1, 589829, 0, 1, 131079, 65536, 1)
 
 [node name="CharacterBody2D" parent="TileMap" instance=ExtResource("3_ot6bu")]
