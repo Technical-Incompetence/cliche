@@ -15,5 +15,7 @@ texture = ExtResource("1_kp4q5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-11, 0, 0, -5.75, 11.5, 0, 0, 6)
+disabled = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
