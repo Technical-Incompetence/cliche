@@ -16,6 +16,13 @@ var moving: bool = false
 
 var tile_to_region: Dictionary = {}
 
+
+func delete_region(layer_idx, tile_idx):
+	var key = "%d:%d:%d" % [layer_idx, tile_idx.x, tile_idx.y]
+	if key in tile_to_region:
+		NavigationServer2D.free_rid(tile_to_region[key])
+
+
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_accept"):
 		moving = true
@@ -26,7 +33,8 @@ func _unhandled_input(event):
 		var local = get_local_mouse_position() * tile_height_offset
 		var tile_pos = _tilemap.local_to_map(local)
 		_tilemap.erase_cell(0, tile_pos)
-		generate_nav_for_tile(0, tile_pos)
+		generate_nav_for_tile(0, tile_pos, true)
+		delete_region(0, tile_pos)
 		print("GENERATED")
 		NavigationServer2D.map_force_update(_map)
 
@@ -41,7 +49,7 @@ func get_or_create_region(layer_idx, tile_idx) -> RID:
 		return region
 
 
-func generate_nav_for_tile(layer_idx, tile_idx):
+func generate_nav_for_tile(layer_idx, tile_idx, delete=false):
 	# Get the navigation polygon associated with our current tile
 	var tile_data = _tilemap.get_cell_tile_data(layer_idx, tile_idx)
 	if tile_data == null:
@@ -75,9 +83,14 @@ func generate_nav_for_tile(layer_idx, tile_idx):
 	var region: RID = get_or_create_region(layer_idx, tile_idx)
 	NavigationServer2D.region_set_map(region, _map)
 	var nav_polygon: NavigationPolygon = NavigationPolygon.new()
-	nav_polygon.add_outline(final_poly)
-	nav_polygon.make_polygons_from_outlines()
-	nav_polygon.get_mesh().agent_radius = 16
+	print(delete)
+	if delete != true:
+		nav_polygon.add_outline(final_poly)
+		nav_polygon.make_polygons_from_outlines()
+		nav_polygon.get_mesh().agent_radius = 16
+	else:
+		print("empty polygon")
+	
 	NavigationServer2D.region_set_navpoly(region, nav_polygon)
 	NavigationServer2D.region_set_navigation_layers(region, layer_idx + 1)
 
