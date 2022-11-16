@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8il7jjf0fa82"]
+
+[ext_resource type="PackedScene" uid="uid://4kb5ed2x7f8m" path="res://top_down.tscn" id="1_dgdxs"]
+[ext_resource type="Script" path="res://LevelView.gd" id="1_enr78"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelView" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+offset_right = 616.0
+offset_bottom = 655.0
+size_flags_horizontal = 3
+script = ExtResource("1_enr78")
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/LevelView"]
+handle_input_locally = false
+size = Vector2i(616, 540)
+render_target_update_mode = 4
+
+[node name="Node2D" parent="HBoxContainer/LevelView/SubViewport" instance=ExtResource("1_dgdxs")]
+
+[node name="Camera2D" parent="HBoxContainer/LevelView/SubViewport/Node2D/Path2D/PathFollow2D/Player" index="2"]
+zoom = Vector2(1, 1)
+
+[node name="GamePlan" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(313, 0)
+layout_mode = 2
+offset_left = 620.0
+offset_right = 1183.0
+offset_bottom = 655.0
+size_flags_horizontal = 3
+
+[editable path="HBoxContainer/LevelView/SubViewport/Node2D"]
+[editable path="HBoxContainer/LevelView/SubViewport/Node2D/Path2D/PathFollow2D/Player"]
