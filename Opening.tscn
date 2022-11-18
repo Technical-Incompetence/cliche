@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://mnrq0xi8auag"]
+
+[ext_resource type="Script" path="res://Opening.gd" id="1_hcqnc"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hcqnc")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.032
+anchor_right = 0.04
+anchor_bottom = 0.074
+offset_left = 424.48
+offset_top = 440.264
+offset_right = 721.92
+offset_bottom = 574.048
+text = "69"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="MessageLabel" type="Label" parent="."]
+offset_left = 271.0
+offset_top = 83.0
+offset_right = 931.0
+offset_bottom = 208.0
+text = "A Cliche way"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 273.0
+offset_top = 240.0
+offset_right = 932.0
+offset_bottom = 440.0
+text = "Start!"
+metadata/_edit_use_anchors_ = true
+
+[node name="MessageTimer" type="Timer" parent="."]

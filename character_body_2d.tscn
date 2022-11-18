@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo54e82jddnpt"]
+
+[ext_resource type="Texture2D" uid="uid://cgq60sgyjf46e" path="res://icon.svg" id="1_kp4q5"]
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_tyr7p"]
+[ext_resource type="PackedScene" uid="uid://mnrq0xi8auag" path="res://Opening.tscn" id="3_lbopv"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+texture_filter = 1
+script = ExtResource("1_tyr7p")
+
+[node name="Icon" type="Sprite2D" parent="."]
+rotation = 0.457276
+scale = Vector2(0.1, 0.1)
+skew = 0.645772
+texture = ExtResource("1_kp4q5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-11, 0, 0, -5.75, 11.5, 0, 0, 6)
+disabled = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+
+[node name="HUD" parent="." instance=ExtResource("3_lbopv")]

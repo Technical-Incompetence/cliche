@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Cliche"
+run/main_scene="res://example.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
+
+[editor]
+
+movie_writer/movie_file="/home/octotep/projects/cliche_video.avi"
 
 [rendering]
 
