@@ -8,8 +8,6 @@ var end_tile: Vector2i = Vector2i(1, 8)
 
 @onready var _player = $Path2D/PathFollow2D/Player
 
-var _velocity: Vector2 = Vector2()
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_astar.cell_size = _tilemap.get_tileset().tile_size
@@ -35,7 +33,6 @@ func _ready():
 
 
 func _unhandled_input(event):
-	print("yo")
 	if event is InputEventMouseButton and event.pressed:
 		# This makes it so that the clicks correspond to the top x pixels of a tile instead of the
 		# middle x pixels of a tile
@@ -62,26 +59,6 @@ func set_player_path_curve():
 		path.curve.add_point(Vector2(point))
 	need_to_reset_position = true
 
-#func get_next_path():
-#	var path = _astar.get_point_path(Vector2i(_player.position) / _tilemap.get_tileset().tile_size, end_tile)
-#	if len(path) > 1:
-#		return path[1]
-#	elif len(path) == 1:
-#		return path[0]
-
-func _physics_process(delta):
-#	print(Vector2i($Player.position) / _tilemap.get_tileset().tile_size)
-#	print(get_next_path())
-#	var direction = $Player.global_position.direction_to(get_next_path() - Vector2(0, 8))
-#	var desired_velocity = direction * 20
-#	var steering = (desired_velocity - _velocity) * delta * 4
-#	_velocity += steering
-#
-#	$Player.velocity = _velocity
-#	$Player.move_and_slide()
-#	_velocity = $Player.velocity
-	pass
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if need_to_reset_position:
@@ -90,7 +67,6 @@ func _process(delta):
 		_player.position = Vector2(0,0)
 	
 	current_tile = Vector2i(_player.global_position) / _tilemap.get_tileset().tile_size
-	print(current_tile)
 	
 	var local = get_local_mouse_position()
 	var tile_pos = _tilemap.local_to_map(local)
