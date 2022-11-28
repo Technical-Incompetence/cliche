@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cliche"
-run/main_scene="res://example.tscn"
+run/main_scene="res://Opening.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 

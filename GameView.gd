@@ -57,8 +57,6 @@ func _ready():
 	_camera.limit_right = (largest_x+1) * _tilemap.get_tileset().tile_size.x
 	_camera.limit_bottom = (largest_y+1) * _tilemap.get_tileset().tile_size.y
 	
-	var path = _astar.get_point_path(current_tile, end_tile)
-	#$Line2D.points = _astar.get_point_path(current_tile, end_tile)
 	
 	var offset = (_tilemap.get_tileset().tile_size / 2)
 	_player.position = current_tile * _tilemap.get_tileset().tile_size + offset
@@ -81,8 +79,7 @@ func set_player_path_curve():
 	_camera.offset = Vector2(0, 0)
 	
 
-func set_player_path(start_tile, end_tile):
-	print(start_tile, end_tile)
+func set_player_path(the_start_tile, the_end_tile):
 	var path = $HBoxContainer/LevelView/SubViewport/LoadLevelHere/Node2D/Path2D
 	var curve = path.curve
 	if !curve:
@@ -93,10 +90,10 @@ func set_player_path(start_tile, end_tile):
 	need_to_reset_position = true
 	_camera.offset = Vector2(0, 0)
 	
-	if start_tile == end_tile:
+	if the_start_tile == the_end_tile:
 		return
 	
-	for point in _astar.get_point_path(start_tile, end_tile):
+	for point in _astar.get_point_path(the_start_tile, the_end_tile):
 		print("Point: ", point)
 		path.curve.add_point(Vector2(point))
 	
@@ -160,7 +157,7 @@ func start_move_pattern():
 	var path_follow = $HBoxContainer/LevelView/SubViewport/LoadLevelHere/Node2D/Path2D/PathFollow2D
 	
 	var current_action = _actions[_current_action]
-	var current_line = _action_lines[_current_action]
+	#var current_line = _action_lines[_current_action]
 	
 	# Highlight current line
 	_action_lines[_current_action].default_color = Color(_action_lines[_current_action - 1].default_color, 1.0)
@@ -268,6 +265,7 @@ func _process(delta):
 		_camera.offset.x += ceil(_camera.limit_left - min_pos.x)
 		
 	if _gamestate == GameState.Running:
+		$ActionMusic.volume_db = -10
 		# Set up new path
 		if path_follow.progress_ratio == 1:
 			_current_action += 1
