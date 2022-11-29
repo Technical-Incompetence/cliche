@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://86k7jmwag2dx"]
+[gd_scene load_steps=4 format=3 uid="uid://86k7jmwag2dx"]
 
 [ext_resource type="Script" path="res://Opening.gd" id="1_hcqnc"]
 [ext_resource type="AudioStream" uid="uid://1nuy1rhf4e5v" path="res://assets/music/GHGO2022 DEMO.ogg" id="2_0fcrf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l27d6"]
+bg_color = Color(0.341176, 0.619608, 0.658824, 1)
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_hcqnc")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l27d6")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 15
@@ -14,7 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MessageLabel" type="Label" parent="HBoxContainer"]
-layout_mode = 2
 offset_left = 91.0
 offset_top = 227.0
 offset_right = 377.0
@@ -26,7 +36,7 @@ text = "QA Tester"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="HBoxContainer"]
-layout_mode = 2
+layout_mode = 3
 anchors_preset = 0
 offset_left = 472.0
 offset_right = 940.0
@@ -34,24 +44,31 @@ offset_bottom = 540.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control"]
-layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 50.0
+offset_right = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="StartButton" type="Button" parent="HBoxContainer/Control/VBoxContainer"]
-layout_mode = 2
-offset_right = 468.0
+offset_right = 368.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
 text = "Start!"
 metadata/_edit_use_anchors_ = true
+
+[node name="CreditsButton" type="Button" parent="HBoxContainer/Control/VBoxContainer"]
+offset_top = 35.0
+offset_right = 368.0
+offset_bottom = 66.0
+text = "Credits"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0fcrf")
 autoplay = true
 
 [connection signal="pressed" from="HBoxContainer/Control/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Control/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
