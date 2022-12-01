@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm8gfu5du0u36"]
+
+[ext_resource type="Shader" path="res://door.gdshader" id="1_83xlr"]
+[ext_resource type="Texture2D" uid="uid://d1t4f3naq78vg" path="res://assets/door.png" id="1_ah3ku"]
+[ext_resource type="Script" path="res://door.gd" id="1_xcboq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ordlr"]
+shader = ExtResource("1_83xlr")
+shader_parameter/new_color = null
+shader_parameter/original_color = Color(1, 0, 1, 1)
+
+[node name="Door" type="Node2D"]
+position = Vector2(0, -16)
+z_index = 1
+script = ExtResource("1_xcboq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ordlr")
+texture = ExtResource("1_ah3ku")

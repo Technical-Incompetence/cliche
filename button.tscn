@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://c50ndg34blmwp"]
+
+[ext_resource type="Script" path="res://door.gd" id="1_w10fu"]
+[ext_resource type="Shader" path="res://door.gdshader" id="2_k6wrn"]
+[ext_resource type="Texture2D" uid="uid://j32c3ccbwon4" path="res://assets/button.png" id="3_ccnun"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcwsg"]
+shader = ExtResource("2_k6wrn")
+shader_parameter/new_color = null
+shader_parameter/original_color = Color(1, 0, 1, 1)
+
+[node name="Node2D" type="Node2D"]
+z_index = 1
+script = ExtResource("1_w10fu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tcwsg")
+position = Vector2(16, 8)
+texture = ExtResource("3_ccnun")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn87f3dw25tlq"]
+
+[ext_resource type="Texture2D" uid="uid://7s2v1mdy7ww2" path="res://assets/finish_tile.png" id="1_i236g"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+z_index = 1
+texture = ExtResource("1_i236g")
